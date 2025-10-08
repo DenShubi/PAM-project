@@ -11,6 +11,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -34,8 +37,8 @@ fun ProfileScreen() {
             TopAppBar(
                 title = { Text("Edit Profile") },
                 navigationIcon = {
-                    IconButton(onClick = { /* Aksi kembali */ }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Kembali")
+                    IconButton(onClick = { }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Kembali")
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -60,7 +63,7 @@ fun ProfileScreen() {
             SettingsSection()
             Spacer(modifier = Modifier.weight(1f))
             Button(
-                onClick = {  },
+                onClick = { },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
@@ -112,7 +115,7 @@ fun ProfileDetailsSection() {
         ) {
             Column(modifier = Modifier.padding(vertical = 8.dp)) {
                 InfoRow(icon = Icons.Default.Email, label = "Email", value = "jolybeer@gmail.com")
-                Divider(modifier = Modifier.padding(horizontal = 16.dp))
+                HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
                 InfoRow(icon = Icons.Default.Phone, label = "No Telp", value = "082247283745")
             }
         }
@@ -132,11 +135,11 @@ fun SettingsSection() {
         ) {
             Column(modifier = Modifier.padding(vertical = 8.dp)) {
                 SettingsRow(icon = Icons.Default.Notifications, text = "Atur Notifikasi")
-                Divider(modifier = Modifier.padding(horizontal = 16.dp))
+                HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
                 SettingsRow(icon = Icons.Default.MoreHoriz, text = "Ubah Kata Sandi")
-                Divider(modifier = Modifier.padding(horizontal = 16.dp))
+                HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
                 SettingsRow(
-                    icon = Icons.Default.ExitToApp,
+                    icon = Icons.AutoMirrored.Filled.ExitToApp,
                     text = "Keluar",
                     iconTint = Color.Red,
                     textColor = Color.Red
@@ -172,7 +175,7 @@ fun SettingsRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { /* Aksi saat baris diklik */ }
+            .clickable {  }
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -180,7 +183,7 @@ fun SettingsRow(
         Spacer(modifier = Modifier.width(16.dp))
         Text(text, color = textColor)
         Spacer(modifier = Modifier.weight(1f))
-        Icon(imageVector = Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+        Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }
 
