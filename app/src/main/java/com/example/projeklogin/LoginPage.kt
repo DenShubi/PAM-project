@@ -19,9 +19,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -92,7 +94,9 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(8.dp))
 
         Button(
-            onClick = { /* TODO: Logika Tombol Masuk */ },
+            onClick = {
+                navController.navigate("profile")
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp),
@@ -108,7 +112,9 @@ fun LoginScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        TextButton(onClick = { /* TODO: Logika Daftar */ }) {
+        TextButton(onClick = {
+            navController.navigate("profile")
+        }) {
             Text(
                 text = stringResource(id = R.string.register),
                 fontWeight = FontWeight.Bold
@@ -116,12 +122,11 @@ fun LoginScreen() {
         }
 
         Spacer(modifier = Modifier.weight(1f))
-
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen()
+    LoginScreen(navController = rememberNavController())
 }

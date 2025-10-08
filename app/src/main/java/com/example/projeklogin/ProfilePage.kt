@@ -28,16 +28,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text("Edit Profile") },
                 navigationIcon = {
-                    IconButton(onClick = { }) {
+                    IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Kembali")
                     }
                 },
@@ -63,7 +65,7 @@ fun ProfileScreen() {
             SettingsSection()
             Spacer(modifier = Modifier.weight(1f))
             Button(
-                onClick = { },
+                onClick = { /* Aksi Edit Akun */ },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
@@ -190,5 +192,5 @@ fun SettingsRow(
 @Preview(showBackground = true)
 @Composable
 fun ProfileScreenPreview() {
-    ProfileScreen()
+    ProfileScreen(navController = rememberNavController())
 }
