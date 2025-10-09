@@ -1,4 +1,4 @@
-package com.example.projeklogin.ui.theme // Pastikan package name ini sesuai dengan project Anda
+package com.example.projeklogin.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
