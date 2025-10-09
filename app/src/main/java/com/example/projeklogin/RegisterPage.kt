@@ -23,9 +23,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun RegisterScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
+
     var passwordVisible by remember { mutableStateOf(false) }
 
     Column(
@@ -39,7 +42,7 @@ fun LoginScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(64.dp))
 
         Text(
-            text = stringResource(id = R.string.login),
+            text = stringResource(id = R.string.register_en),
             fontSize = 34.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF2E8B57)
@@ -48,7 +51,7 @@ fun LoginScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = stringResource(id = R.string.welcome_back),
+            text = stringResource(id = R.string.user_regist),
             fontSize = 18.sp,
             modifier = Modifier.padding(bottom = 32.dp)
         )
@@ -65,8 +68,19 @@ fun LoginScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
+            value = username,
+            onValueChange = { username = it },
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text(stringResource(id = R.string.username)) },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedTextField(
+            value = confirmPassword,
+            onValueChange = { confirmPassword = it },
             modifier = Modifier.fillMaxWidth(),
             label = { Text(stringResource(id = R.string.password)) },
             singleLine = true,
@@ -84,14 +98,29 @@ fun LoginScreen(navController: NavController) {
             }
         )
 
-        TextButton(
-            onClick = { /* TODO: Logika Lupa Sandi */ },
-            modifier = Modifier.align(Alignment.End)
-        ) {
-            Text(text = stringResource(id = R.string.forgot_password))
-        }
+        Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(8.dp))
+        OutlinedTextField(
+            value = password,
+            onValueChange = { password = it },
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text(stringResource(id = R.string.password_confirm)) },
+            singleLine = true,
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            trailingIcon = {
+                val image = if (passwordVisible)
+                    painterResource(id = R.drawable.baseline_visibility_off_24)
+                else
+                    painterResource(id = R.drawable.baseline_visibility_off_24)
+
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(painter = image, contentDescription = "Toggle password visibility")
+                }
+            }
+        )
+
+        Spacer(modifier = Modifier.height(32.dp))
 
         Button(
             onClick = {
@@ -104,7 +133,7 @@ fun LoginScreen(navController: NavController) {
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2E8B57))
         ) {
             Text(
-                text = stringResource(id = R.string.sign_in),
+                text = stringResource(id = R.string.sign_up),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -113,10 +142,10 @@ fun LoginScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         TextButton(onClick = {
-            navController.navigate("register")
+            navController.navigate("login")
         }) {
             Text(
-                text = stringResource(id = R.string.register),
+                text = "Sudah punya akun? " + stringResource(id = R.string.register),
                 fontWeight = FontWeight.Bold
             )
         }
@@ -127,6 +156,6 @@ fun LoginScreen(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun LoginScreenPreview() {
-    LoginScreen(navController = rememberNavController())
+fun RegisterScreenPreview() {
+    RegisterScreen(navController = rememberNavController())
 }

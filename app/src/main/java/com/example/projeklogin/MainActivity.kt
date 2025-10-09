@@ -28,6 +28,10 @@ class MainActivity : ComponentActivity() {
                             LoginScreen(navController = navController)
                         }
 
+                        composable("register") {
+                            RegisterScreen(navController = navController)
+                        }
+
                         composable("profile") {
                             ProfileScreen(navController = navController)
                         }
